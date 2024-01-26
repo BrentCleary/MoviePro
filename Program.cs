@@ -17,7 +17,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+// Load both appsettings.json and secrets.json configurations
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+builder.Configuration.AddJsonFile("secrets.json", optional: true, reloadOnChange: true);
+
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("appsettings"));
 
 var app = builder.Build();
 
