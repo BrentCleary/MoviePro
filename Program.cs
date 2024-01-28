@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using MoviePro.Data;
 using MoviePro.Models.Settings;
 using MoviePro.Services;
@@ -17,18 +18,33 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<SeedService>();
+
+//builder.Services.AddIdentity(options => options.SignIn.RequireConfirmedAccount = true)
+//.AddEntityFrameworkStores();
 
 // Load both appsettings.json and secrets.json configurations
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 builder.Configuration.AddJsonFile("secrets.json", optional: true, reloadOnChange: true);
 
+
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("appsettings"));
 
 var app = builder.Build();
+
+// Resolve DataService and run initialization ManageDataAsync()
+using (var scope = app.Services.CreateScope())
+{
+    //DataService
+    var serviceProvider = scope.ServiceProvider;
+    var seedService = serviceProvider.GetRequiredService<SeedService>();
+    await seedService.ManageDataAsync();
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
