@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration.UserSecrets;
 using MoviePro.Data;
 using MoviePro.Models.Settings;
 using MoviePro.Services;
+using MoviePro.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<SeedService>();
+builder.Services.AddScoped<IRemoteMovieService, TMDBMovieService>();
+builder.Services.AddRazorPages();
+
 
 //builder.Services.AddIdentity(options => options.SignIn.RequireConfirmedAccount = true)
 //.AddEntityFrameworkStores();
