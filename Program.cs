@@ -24,6 +24,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<SeedService>();
+builder.Services.AddHttpClient();
 builder.Services.AddScoped<IRemoteMovieService, TMDBMovieService>();
 builder.Services.AddRazorPages();
 
