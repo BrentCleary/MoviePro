@@ -3,7 +3,7 @@
     public interface IImageService
     {
         Task<byte[]> EncodeImageAsync(IFormFile poster);
-        Task<byte[]> EncodeImageUrl(string imageURL);
+        Task<byte[]> EncodeImageURLAsync(string imageURL);
         string DecodeImage(byte[] poster, string contentType);
     }
 }

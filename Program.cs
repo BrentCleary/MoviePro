@@ -23,10 +23,12 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<SeedService>();
-builder.Services.AddHttpClient();
-builder.Services.AddScoped<IRemoteMovieService, TMDBMovieService>();
 builder.Services.AddRazorPages();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<SeedService>();
+builder.Services.AddSingleton<IImageService, BasicImageService>();
+builder.Services.AddScoped<IRemoteMovieService, TMDBMovieService>();
+builder.Services.AddScoped<IDataMappingService, TMDBMappingService>();
 
 
 //builder.Services.AddIdentity(options => options.SignIn.RequireConfirmedAccount = true)

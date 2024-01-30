@@ -6,6 +6,8 @@
 
         public string DefaultBackdropSize { get; set; }
 
+        public string DefaultCastImage { get; set; }
+
         public string DefaultPosterSize { get; set; }
 
         public string DefaultYoutubeKey { get; set; }
