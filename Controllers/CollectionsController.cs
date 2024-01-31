@@ -142,7 +142,7 @@ namespace MoviePro.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "MovieCollection");
+            return RedirectToAction("Index", "MovieCollections");
         }
 
         private bool CollectionExists(int id)
