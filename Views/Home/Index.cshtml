@@ -6,6 +6,30 @@
     ViewData["Title"] = "MoviePro";
 }
 
+<style>
+    .clampOverview{
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .clampTitle {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    h5.card-title {
+        height: 2.5em;
+    }
+
+    p.card-title{
+        height: 5em;
+    }
+</style>
+
 <div class="row row-cols">
     @foreach(var movie in Model.Upcoming.results)
     {
@@ -13,11 +37,9 @@
             <div class="card" style="width: 18rem;">
               <img src="@movie.poster_path" class="card-img-top img-fluid" alt="moviePosterImage">
               <div class="card-body">
-                <h5 class="card-title">@movie.title</h5>
-                <p class="card-text">@movie.overview</p>
-                <button class="btn btn-dark w-100">
-                    <a href="#" class="fw-bold text-decoration-none text-light">Details</a>
-                </button>
+                <h5 class="card-title clampTitle">@movie.title</h5>
+                <p class="card-text clampOverview">@movie.overview</p>
+                <a asp-action="Details" asp-controller="Movies" asp-route-id="@movie.id" class="btn btn-dark w-100 fw-bold text-decoration-none text-light">Details</a>
               </div>
             </div>
         </div>
