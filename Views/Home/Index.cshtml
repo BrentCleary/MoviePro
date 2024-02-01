@@ -1,8 +1,25 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using MoviePro.Models.ViewModels;
+
+@model LandingPageVM
+
+@{
+    ViewData["Title"] = "MoviePro";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row row-cols">
+    @foreach(var movie in Model.Upcoming.results)
+    {
+        <div class="col-3 mb-2">
+            <div class="card" style="width: 18rem;">
+              <img src="@movie.poster_path" class="card-img-top img-fluid" alt="moviePosterImage">
+              <div class="card-body">
+                <h5 class="card-title">@movie.title</h5>
+                <p class="card-text">@movie.overview</p>
+                <button class="btn btn-dark w-100">
+                    <a href="#" class="fw-bold text-decoration-none text-light">Details</a>
+                </button>
+              </div>
+            </div>
+        </div>
+    }
 </div>
