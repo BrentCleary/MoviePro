@@ -33,9 +33,9 @@ namespace MoviePro.Controllers
                                           .Include(c => c.MovieCollection)
                                           .ThenInclude(mc => mc.Movie).ToListAsync(),
                 NowPlaying = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.now_playing, count),
-                Popular = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.now_playing, count),
-                TopRated = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.now_playing, count),
-                Upcoming = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.now_playing, count)
+                Popular = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.popular, count),
+                TopRated = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.top_rated, count),
+                Upcoming = await _tmdbMovieService.SearchMoviesAsync(MovieCategory.upcoming, count)
             };
 
             return View(data);
