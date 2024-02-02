@@ -12,7 +12,7 @@
         </div>
         
         <div class="row">
-            <button class="btn btn-lg w-100 btn-danger fw-bold" data-toggle="modal" data-target="#trailer">
+            <button class="btn btn-lg w-100 btn-danger fw-bold" data-bs-toggle="modal" data-bs-target="#trailer">
                 WATCH TRAILER
             </button>
         </div>
@@ -107,11 +107,11 @@
                 <div class="embed-responsive embed-respsonsive-16by9">
                     @{
                         // I am isolating a piece of data in order to use it as my embed source
-                        var key = Model.TrailerUrl.Split(Path"=").Last();
+                        var key = Model.TrailerUrl.Split("=").Last();
                         var source = $"https://www.youtube.com/embed/{key}";
                     }
 
-                    <iframe width="560" height="315" src="@source"
+                    <iframe width="1000" height="562" src="@source"
                             title="Youtube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
