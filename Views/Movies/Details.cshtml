@@ -10,12 +10,6 @@
         <div class="row">
             <img src="@_imageService.DecodeImage(Model.Poster, Model.PosterType)" class="w-100" alt="...">
         </div>
-        
-        <div class="row">
-            <button class="btn btn-lg w-100 btn-danger fw-bold" data-bs-toggle="modal" data-bs-target="#trailer">
-                WATCH TRAILER
-            </button>
-        </div>
 
     </div>
 
@@ -61,11 +55,18 @@
             </div>
         </div>
         <hr />
+
+        <div class="row">
+            <button class="btn btn-lg w-100 btn-danger fw-bold" data-bs-toggle="modal" data-bs-target="#trailer">
+                WATCH TRAILER
+            </button>
+        </div>
+        <hr />
     </div>
 
 </div>
 
-<div class="row">
+<div class="row mt-4 mb-2">
     <div class="col">
         <span class="h5 fw-bolder">STARRING:</span>
     </div>
@@ -82,7 +83,7 @@
                     </div>
                     <div class="col-md-10">
                         <div class="card-body">
-                            <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.CastID"><h5 class="card-title">Name: @actor.Name</h5> </a>
+                            <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.CastID"><h5 class="card-title">@actor.Name</h5> </a>
                             <p class="card-text">Character: @actor.Character</p>
                         </div>
                     </div>

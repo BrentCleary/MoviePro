@@ -1,39 +1,81 @@
 ﻿@using MoviePro.Models.TMDB
 @model ActorDetail
 
-<div class="media">
-    <img class="align-self-center mr-3" src="@Model.profile_path" alt="...">
-    <div class="media-body">
+<style>
+
+    /* Style for the biography and the toggle button */
+    .container {
+        display: flex;
+    }
+
+    .column {
+        flex: 1;
+        overflow: hidden;
+        transition: flex 0.5s;
+        border: 1px solid #ccc;
+    }
+
+    #toggleButton {
+        cursor: pointer;
+        padding: 5px;
+        background-color: #3498db;
+        color: #fff;
+    }
+
+</style>
+
+<div class="row">
+
+    <div class="col-6 media">
+        <img class="align-self-center mr-3" src="@Model.profile_path" alt="...">
+    </div>
+
+    <div class="col-6 media-body">
+        <h5 class="display-1">@Model.name</h5>
         <div class="row">
             <table class="table table-hover">
                 <tbody>
                     <tr>
-                        <td>Name:</td>
-                        <td>
-                            @Model.name
-                        </td>
-                    </tr>
-                    <tr>
                         <td>Biography:</td>
-                        <td>
-                            @Model.biography
+                        <td class="clampBiography">@Model.biography 
+                            <div id="toggleButton">Toggle Column</div>
                         </td>
                     </tr>
                     <tr>
                         <td>Birthday:</td>
-                        <td>
-                            @Model.birthday
-                        </td>
+                        <td>@Model.birthday</td>
                     </tr>
                     <tr>
                         <td>Place of birth:</td>
-                        <td>
-                            @Model.place_of_birth
-                        </td>
+                        <td>@Model.place_of_birth</td>
+                    </tr>
+                    <tr>
+                        <td>Known For:</td>
+                        <td>@Model.known_for_department</td>
+                    </tr>
+                    <tr>
+                        <td>Popularity:</td>
+                        <td>@Model.popularity</td>
                     </tr>
                 </tbody>
-
             </table>
         </div>
     </div>
 </div>
+
+<script>
+    // JavaScript to handle the toggle functionality
+    document.getElementById('toggleButton').addEventListener('click', function() {
+      const column1 = document.getElementById('column1');
+      const column2 = document.getElementById('column2');
+
+      // Toggle the flex property to expand/collapse the column
+      if (column1.style.flex === '1') {
+        column1.style.flex = '0';
+        column2.style.flex = '1';
+      } else {
+        column1.style.flex = '1';
+        column2.style.flex = '0';
+      }
+    });
+</script>

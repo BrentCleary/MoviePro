@@ -24,7 +24,14 @@ namespace MoviePro.Services
             actor.profile_path = BuildCastImage(actor.profile_path);
 
             // 2. Bio
-            actor.biography = "Not Available";
+            if (string.IsNullOrEmpty(actor.biography))
+            {
+                actor.biography = "Not Available";
+            }
+            else
+            {
+                actor.biography = actor.biography.Trim();
+            }
 
             // 3. Place of Birth
             if (string.IsNullOrEmpty(actor.place_of_birth))
