@@ -5,6 +5,7 @@ using MoviePro.Data;
 using MoviePro.Models.Settings;
 using MoviePro.Services;
 using MoviePro.Services.Interfaces;
+using TheBlogProject.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,7 @@ using (var scope = app.Services.CreateScope())
     var serviceProvider = scope.ServiceProvider;
     var seedService = serviceProvider.GetRequiredService<SeedService>();
     await seedService.ManageDataAsync();
+    await DataHelper.ManageDataAsync(serviceProvider);
 }
 
 
