@@ -40,7 +40,7 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 builder.Configuration.AddJsonFile("secrets.json", optional: true, reloadOnChange: true);
 
 
-builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("appsettings"));
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 var app = builder.Build();
 
