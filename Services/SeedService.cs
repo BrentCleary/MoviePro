@@ -30,7 +30,6 @@ namespace MoviePro.Services
             await SeedCollections();
         }
 
-
         private async Task UpdateDatabaseAsync()
         {
             await _dbContext.Database.MigrateAsync();
@@ -64,12 +63,12 @@ namespace MoviePro.Services
 
         private async Task SeedCollections()
         {
-            if(_dbContext.Collection.Any()) return;
+            //if(_dbContext.Collection.Any()) return;
 
             _dbContext.Add(new Collection()
             {
                 Name = _appSettings.MovieProSettings.DefaultCollection.Name,
-                Description = _appSettings.MovieProSettings.DefaultCollection.Desciption
+                Description = _appSettings.MovieProSettings.DefaultCollection.Description
             });
            
             await _dbContext.SaveChangesAsync();
